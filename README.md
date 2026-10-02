@@ -55,7 +55,7 @@ python server.py
 
 # 3. Mở trình duyệt truy cập: http://localhost:8080
 ```
-### b) Truy cập vào web [hoclieuchuyentiep.vercel.app] để sử dụng
+### b) Truy cập vào web [hoclieuchuyentiep.vercel.app](https://hoclieuchuyentiep.vercel.app) để sử dụng
 
 ## ⚠️ Hạn chế Kỹ thuật & Lưu ý quan trọng (Disclaimer)
 
