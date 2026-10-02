@@ -4,7 +4,7 @@ Giải pháp phân phối học liệu vi mô theo bài học qua mã QR nhằm 
 
 ---
 
-## 1. Bối cảnh & Bài toán đặt ra
+## 1. Bối cảnh & Vấn đề đặt ra
 
 Trong những tuần đầu năm học, việc điều chỉnh và phân phối sách giáo khoa có thể gặp độ trễ cục bộ tại một số địa phương, khiến học sinh chưa có đủ tài liệu học tập. Phản ứng tự phát phổ biến là photocopy nguyên cuốn sách vừa gây tốn kém chi phí, vừa tiềm ẩn nguy cơ vi phạm quyền tác giả theo Luật Sở hữu trí tuệ.
 
@@ -14,7 +14,7 @@ Trong những tuần đầu năm học, việc điều chỉnh và phân phối 
 
 ## 2. Quy trình vận hành
 
-1. **Trích xuất vi mô:** Giáo viên tải tệp tài liệu PDF lên trình duyệt và chọn đúng khoảng trang cho tiết học ngày hôm đó (khoảng 2 – 4 trang).
+1. **Trích xuất học liệu:** Giáo viên tải tệp tài liệu PDF lên trình duyệt và chọn đúng khoảng trang cho tiết học ngày hôm đó (khoảng 2 – 4 trang).
 2. **Sinh mã QR trình chiếu:** Hệ thống tự động lưu các trang đã chọn và sinh mã QR độ nét cao để giáo viên chiếu lên màn hình TV hoặc máy chiếu của lớp.
 3. **Tiếp cận bình đẳng:**
    - **Học sinh có thiết bị:** Bật camera quét mã QR để mở trực tiếp nội dung bài học trên trình duyệt di động mà không cần đăng ký tài khoản hay cài đặt phần mềm.
@@ -34,7 +34,7 @@ Dự án vận dụng đúng quy định tại **Khoản 1 Điều 25 Luật S�
 
 ## 4. Công nghệ sử dụng
 
-* **Giao diện:** HTML5, CSS3 theo phong cách tối giản (Minimalism), thiết kế tối ưu cho màn hình TV và điện thoại.
+* **Giao diện:** HTML5, CSS3, thiết kế tối ưu cho màn hình TV và điện thoại.
 * **Kết xuất PDF:** `PDF.js` (Mozilla) xử lý trực tiếp tệp PDF trên trình duyệt.
 * **Mã QR:** `QRCode.js` sinh mã ma trận động theo từng buổi học.
 * **Triển khai:** Tương thích với nền tảng máy chủ cục bộ hoặc lưu trữ đám mây tĩnh trên Vercel / GitHub Pages.
