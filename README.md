@@ -1,4 +1,4 @@
-# Học Liệu Chuyển Tiếp (HocLieuChuyenTiep)
+# Học Liệu Chuyển Tiếp
 
 Giải pháp phân phối học liệu vi mô theo bài học qua mã QR nhằm hỗ trợ học sinh duy trì việc học trong giai đoạn chờ cung ứng sách giáo khoa chính thức.
 
@@ -55,4 +55,5 @@ python server.py
 
 # 3. Mở trình duyệt truy cập: http://localhost:8080
 ```
+### Truy cập vào web hoclieuchuyentiep.vercel.app để sử dụng
 
