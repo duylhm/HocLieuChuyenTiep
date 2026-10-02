@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Học liệu chuyển tiếp</title>
+  
+  <!-- PDF.js official distribution -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <!-- QRCode.js official distribution -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #F7F7F6;
+      --surface: #FFFFFF;
+      --surface-subtle: #F0F0EE;
+      --border: #E2E2DF;
+      --border-dark: #B8B8B2;
+      
+      --text-main: #111110;
+      --text-muted: #666661;
+      --text-faint: #999993;
+      
+      --accent: #111110;
+      --accent-hover: #262624;
+      
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: "JetBrains Mono", "SF Mono", Consolas, Menlo, monospace;
+      
+      --radius: 4px;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── HEADER ─── */
+    header.site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+    }
+
+    .brand-divider {
+      color: var(--border-dark);
+      font-size: 13px;
+    }
+
+    .brand-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 4px;
+    }
+
+    .nav-btn {
+      appearance: none;
+      background: transparent;
+      border: 1px solid transparent;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-radius: var(--radius);
+      cursor: pointer;
+    }
+
+    .nav-btn:hover {
+      color: var(--text-main);
+    }
+
+    .nav-btn.active {
+      background: var(--surface-subtle);
+      border-color: var(--border);
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    /* ─── CONTAINER ─── */
+    main.container {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 24px;
+    }
+
+    .view-section {
+      display: none;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    /* ─── CREATOR VIEW ─── */
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .panel-heading {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      letter-spacing: -0.01em;
+    }
+
+    /* Upload Area */
+    .upload-box {
+      border: 1px dashed var(--border-dark);
+      border-radius: var(--radius);
+      padding: 24px 16px;
+      text-align: center;
+      background: var(--surface-subtle);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .upload-box:hover {
+      background: #ECECE9;
+      border-color: var(--text-main);
+    }
+
+    .upload-box input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .upload-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .upload-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .file-loaded-info {
+      margin-top: 12px;
+      padding: 10px 12px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 12px;
+      font-family: var(--font-mono);
+      display: none;
+    }
+
+    .file-loaded-info.active {
+      display: block;
+    }
+
+    /* Form Fields */
+    .field-group {
+      margin-top: 14px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .field-input {
+      width: 100%;
+      height: 36px;
+      padding: 0 10px;
+      font-size: 13px;
+      font-family: inherit;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .field-input:focus {
+      border-color: var(--text-main);
+    }
+
+    .range-inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      height: 40px;
+      margin-top: 20px;
+      background: var(--accent);
+      color: var(--surface);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-submit:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-submit:disabled {
+      background: var(--border-dark);
+      cursor: not-allowed;
+    }
+
+    /* Preview Stream */
+    .preview-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .thumbnails-scroll-area {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-height: 700px;
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    .canvas-page-wrapper {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px;
+      text-align: center;
+    }
+
+    .canvas-page-title {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .canvas-page-wrapper canvas, .canvas-page-wrapper img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    .empty-state-notice {
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    /* ─── TV & PRESENTATION VIEW ─── */
+    .tv-board {
+      background: #111110;
+      color: #F7F7F6;
+      border-radius: var(--radius);
+      padding: 48px;
+      min-height: 580px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .tv-meta-subject {
+      font-size: 13px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      color: #999993;
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    .tv-title {
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .tv-pages {
+      font-size: 18px;
+      font-family: var(--font-mono);
+      color: #38BDF8;
+      margin-bottom: 32px;
+    }
+
+    .tv-instructions {
+      border-top: 1px solid #262624;
+      padding-top: 24px;
+      font-size: 14px;
+      color: #B8B8B2;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .tv-qr-container {
+      background: #FFFFFF;
+      padding: 24px;
+      border-radius: var(--radius);
+      text-align: center;
+      width: 320px;
+      margin: 0 auto;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+
+    #tv-qrcode-mount {
+      width: 272px;
+      height: 272px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    #tv-qrcode-mount img, #tv-qrcode-mount canvas {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .tv-qr-label {
+      margin-top: 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #111110;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .tv-qr-link-url {
+      margin-top: 8px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: #0284C7;
+      word-break: break-all;
+      display: block;
+      text-decoration: underline;
+    }
+
+    /* ─── STUDENT READER VIEW ─── */
+    .reader-box {
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .reader-header {
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .reader-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .reader-subtitle {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .reader-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Print styles */
+    @media print {
+      header.site-header, .panel, .header-nav, .btn-submit, .reader-header button {
+        display: none !important;
+      }
+      .view-section {
+        display: none !important;
+      }
+      #view-student {
+        display: block !important;
+      }
+      .reader-box {
+        border: none !important;
+        padding: 0 !important;
+      }
+      .canvas-page-wrapper {
+        page-break-after: always;
+        border: none !important;
+        box-shadow: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── HEADER ─── -->
+  <header class="site-header" id="main-header">
+    <div class="brand-group">
+      <div class="brand-title">Học liệu chuyển tiếp</div>
+      <div class="brand-divider">/</div>
+      <div class="brand-desc">Trích xuất nội dung vi mô theo bài học</div>
+    </div>
+
+    <nav class="header-nav">
+      <button class="nav-btn active" id="btn-tab-creator" onclick="switchView('creator')">
+        Soạn bài học & Sinh mã QR
+      </button>
+      <button class="nav-btn" id="btn-tab-tv" onclick="switchView('tv')">
+        Chiếu TV / Màn hình
+      </button>
+      <button class="nav-btn" id="btn-tab-student" onclick="switchView('student')">
+        Xem trang học sinh
+      </button>
+    </nav>
+  </header>
+
+  <!-- ─── MAIN CONTENT ─── -->
+  <main class="container">
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- 1. SOẠN BÀI HỌC & SINH MÃ QR                                  -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div id="view-creator" class="view-section active">
+      <div class="grid-layout">
+        
+        <!-- Left: Upload & Config -->
+        <div class="panel">
+          <div class="panel-heading">1. Chọn tệp PDF & Cấu hình bài học</div>
+
+          <div class="upload-box" id="drop-zone">
+            <input type="file" id="pdf-file-input" accept="application/pdf" />
+            <div class="upload-title">Tải lên tệp PDF tài liệu</div>
+            <div class="upload-sub">Chọn tệp PDF bất kỳ từ máy tính để đọc và trích xuất trang</div>
+          </div>
+
+          <div class="file-loaded-info" id="file-info-bar">
+            <div><strong id="info-filename">file.pdf</strong></div>
+            <div id="info-pages" style="color: var(--text-muted); margin-top: 2px;">0 trang</div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Tên môn học</label>
+            <input type="text" id="subject-input" class="field-input" value="Toán học" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Tên bài học</label>
+            <input type="text" id="lesson-input" class="field-input" value="Bài 1: Mở đầu năm học" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Khoảng trang cần trích xuất</label>
+            <div class="range-inputs">
+              <div>
+                <input type="number" id="start-page-input" class="field-input" min="1" value="1" placeholder="Từ trang" oninput="onRangeChange()" />
+              </div>
+              <div>
+                <input type="number" id="end-page-input" class="field-input" min="1" value="1" placeholder="Đến trang" oninput="onRangeChange()" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Network / Hosting Indicator -->
+          <div class="field-group">
+            <label class="field-label">Môi trường phát hành</label>
+            <input type="text" id="network-ip-input" class="field-input" style="font-family: var(--font-mono); font-size:12px; background:var(--surface-subtle);" readonly />
+          </div>
+
+          <button class="btn-submit" id="btn-generate-qr" onclick="handleGenerateQR()" disabled>
+            Sinh mã QR cho bài học
+          </button>
+        </div>
+
+        <!-- Right: Real Canvas Pages Preview -->
+        <div class="panel">
+          <div class="panel-heading">2. Xem trước các trang trích xuất thực tế</div>
+          <div class="preview-header-bar">
+            <span id="preview-status-text">Chưa tải tệp PDF</span>
+            <span id="preview-range-text">0 trang</span>
+          </div>
+
+          <div class="thumbnails-scroll-area" id="thumbnails-container">
+            <div class="empty-state-notice" id="empty-state-msg">
+              Hãy chọn hoặc kéo thả tệp PDF ở khung bên trái để tải và xem trước các trang bài học thực tế.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- 2. CHIẾU TV / MÀN HÌNH                                        -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div id="view-tv" class="view-section">
+      <div class="tv-board">
+        <div>
+          <div class="tv-meta-subject" id="tv-subject-label">MÔN HỌC</div>
+          <div class="tv-title" id="tv-lesson-title">Tên bài học</div>
+          <div class="tv-pages" id="tv-pages-label">TRÍCH XUẤT: TRANG 1 – 1</div>
+
+          <div class="tv-instructions">
+            <div>1. Bật camera điện thoại hoặc máy tính bảng để quét mã QR bên cạnh.</div>
+            <div>2. Xem trực tiếp các trang học liệu của tiết học qua đường dẫn công khai (hỗ trợ cả Wi-Fi và 4G/5G).</div>
+            <div>3. Không cần cài đặt phần mềm, nội dung hiển thị trực tiếp trên trình duyệt.</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="tv-qr-container">
+            <div id="tv-qrcode-mount"></div>
+            <div class="tv-qr-label">Quét mã mở bài học</div>
+            <a class="tv-qr-link-url" id="tv-qr-link-url" target="_blank"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- 3. XEM TRANG HỌC SINH (KHI ĐIỆN THOẠI QUÉT MÃ QR)             -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div id="view-student" class="view-section">
+      <div class="reader-box">
+        <div class="reader-header">
+          <div>
+            <div class="reader-title" id="reader-title">Đang tải bài học...</div>
+            <div class="reader-subtitle" id="reader-subtitle">Học liệu chuyển tiếp</div>
+          </div>
+          <button class="nav-btn" onclick="window.print()">In trang này (A4)</button>
+        </div>
+
+        <div class="reader-stream" id="reader-stream-container">
+          <div style="padding:40px; text-align:center; color:var(--text-muted); font-size:13px;" id="reader-loading-msg">
+            Đang tải dữ liệu bài học...
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ─── SCRIPT ─── -->
+  <script>
+    if (typeof pdfjsLib !== 'undefined') {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
+    // High-speed edge cloud bucket for Vercel/Public Internet hosting (Free, Zero-Config)
+    const CLOUD_BUCKET = "https://kvdb.io/HKM9Gh5rFbmkp3GTSbgxxZ";
+
+    const appState = {
+      pdfDoc: null,
+      fileName: '',
+      totalPages: 0,
+      startPage: 1,
+      endPage: 1,
+      renderedPagesData: [],
+      currentLessonId: '',
+      isCloudMode: false,
+      baseUrl: window.location.origin + window.location.pathname
+    };
+
+    // Detect environment (Local vs Vercel/Web)
+    async function initEnvironment() {
+      const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const ipInput = document.getElementById('network-ip-input');
+
+      if (isLocalhost) {
+        try {
+          const res = await fetch('/api/ip');
+          if (res.ok) {
+            const data = await res.json();
+            if (data.ip && data.ip !== '127.0.0.1') {
+              appState.baseUrl = `http://${data.ip}:${data.port || 8080}`;
+              ipInput.value = `Máy chủ cục bộ (${data.ip}:${data.port || 8080})`;
+              return;
+            }
+          }
+        } catch (e) {}
+        ipInput.value = `Máy chủ cục bộ (${window.location.host})`;
+      } else {
+        // Running on Vercel or any public domain
+        appState.isCloudMode = true;
+        appState.baseUrl = window.location.origin + window.location.pathname;
+        ipInput.value = `Đám mây Vercel (${window.location.host})`;
+      }
+    }
+
+    function switchView(viewName) {
+      document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+
+      const targetView = document.getElementById('view-' + viewName);
+      const targetBtn = document.getElementById('btn-tab-' + viewName);
+      if (targetView) targetView.classList.add('active');
+      if (targetBtn) targetBtn.classList.add('active');
+
+      if (viewName === 'student' && appState.renderedPagesData.length > 0) {
+        displayStudentPages(
+          document.getElementById('subject-input').value,
+          document.getElementById('lesson-input').value,
+          `Trang ${appState.startPage} – ${appState.endPage}`,
+          appState.renderedPagesData
+        );
+      }
+    }
+
+    // PDF Upload handling
+    const fileInput = document.getElementById('pdf-file-input');
+    fileInput.addEventListener('change', async function(e) {
+      const file = e.target.files[0];
+      if (!file || file.type !== 'application/pdf') {
+        alert('Vui lòng chọn một tệp PDF hợp lệ.');
+        return;
+      }
+      await loadPdfFile(file);
+    });
+
+    async function loadPdfFile(file) {
+      appState.fileName = file.name;
+      const fileInfoBar = document.getElementById('file-info-bar');
+      const infoFilename = document.getElementById('info-filename');
+      const infoPages = document.getElementById('info-pages');
+
+      fileInfoBar.classList.add('active');
+      infoFilename.textContent = file.name;
+      infoPages.textContent = 'Đang đọc cấu trúc tệp PDF...';
+
+      try {
+        const arrayBuffer = await file.arrayBuffer();
+        const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
+        appState.pdfDoc = await loadingTask.promise;
+        appState.totalPages = appState.pdfDoc.numPages;
+
+        infoPages.textContent = `${appState.totalPages} trang`;
+        
+        const startInput = document.getElementById('start-page-input');
+        const endInput = document.getElementById('end-page-input');
+        startInput.max = appState.totalPages;
+        endInput.max = appState.totalPages;
+        startInput.value = 1;
+        endInput.value = Math.min(3, appState.totalPages);
+
+        appState.startPage = 1;
+        appState.endPage = Math.min(3, appState.totalPages);
+
+        const cleanName = file.name.replace(/\.[^/.]+$/, "").replace(/[_-]/g, " ");
+        document.getElementById('lesson-input').value = cleanName;
+
+        document.getElementById('btn-generate-qr').disabled = false;
+
+        await renderSelectedPages();
+
+      } catch (err) {
+        console.error(err);
+        alert('Lỗi đọc tệp PDF: ' + err.message);
+        infoPages.textContent = 'Lỗi mở tệp';
+      }
+    }
+
+    let rangeTimeout = null;
+    function onRangeChange() {
+      if (!appState.pdfDoc) return;
+      clearTimeout(rangeTimeout);
+      rangeTimeout = setTimeout(() => {
+        const s = parseInt(document.getElementById('start-page-input').value) || 1;
+        const e = parseInt(document.getElementById('end-page-input').value) || s;
+        
+        appState.startPage = Math.max(1, Math.min(s, appState.totalPages));
+        appState.endPage = Math.max(appState.startPage, Math.min(e, appState.totalPages));
+
+        document.getElementById('start-page-input').value = appState.startPage;
+        document.getElementById('end-page-input').value = appState.endPage;
+
+        renderSelectedPages();
+      }, 300);
+    }
+
+    // Render Real Pages into Canvas and extract JPEG data URLs
+    async function renderSelectedPages() {
+      if (!appState.pdfDoc) return;
+
+      const container = document.getElementById('thumbnails-container');
+      const emptyMsg = document.getElementById('empty-state-msg');
+      if (emptyMsg) emptyMsg.style.display = 'none';
+
+      container.innerHTML = '<div style="font-size:12px; color:var(--text-muted); padding:20px; font-family:var(--font-mono);">Đang kết xuất các trang thực tế từ tệp PDF...</div>';
+
+      document.getElementById('preview-status-text').textContent = appState.fileName;
+      const count = (appState.endPage - appState.startPage) + 1;
+      document.getElementById('preview-range-text').textContent = `Trang ${appState.startPage} – ${appState.endPage} (${count} trang)`;
+
+      appState.renderedPagesData = [];
+      const fragment = document.createDocumentFragment();
+
+      for (let p = appState.startPage; p <= appState.endPage; p++) {
+        try {
+          const page = await appState.pdfDoc.getPage(p);
+          // Scale 1.2 provides high readability while keeping data compact
+          const viewport = page.getViewport({ scale: 1.2 });
+
+          const card = document.createElement('div');
+          card.className = 'canvas-page-wrapper';
+
+          const title = document.createElement('div');
+          title.className = 'canvas-page-title';
+          title.textContent = `TRANG ${p} THỰC TẾ TRÍCH TỪ TỆP`;
+
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+
+          await page.render({
+            canvasContext: ctx,
+            viewport: viewport
+          }).promise;
+
+          // Convert canvas to compressed JPEG
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+          appState.renderedPagesData.push({ pageNum: p, dataUrl: dataUrl });
+
+          card.appendChild(title);
+          card.appendChild(canvas);
+          fragment.appendChild(card);
+
+        } catch (pageErr) {
+          console.error("Lỗi render trang " + p, pageErr);
+        }
+      }
+
+      container.innerHTML = '';
+      container.appendChild(fragment);
+    }
+
+    // Save Lesson Data: supports both Local Python server and Vercel/Cloud edge
+    async function saveLessonData(lessonId, payload) {
+      const payloadString = JSON.stringify(payload);
+
+      // Try local server first if running on localhost
+      if (!appState.isCloudMode) {
+        try {
+          const res = await fetch('/api/save-lesson', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: payloadString
+          });
+          if (res.ok) return true;
+        } catch (e) {
+          console.warn("Local server not responding, falling back to cloud edge storage...");
+        }
+      }
+
+      // Cloud Edge Storage (For Vercel or public deployment)
+      const cloudRes = await fetch(`${CLOUD_BUCKET}/${lessonId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: payloadString
+      });
+
+      if (!cloudRes.ok) {
+        throw new Error('Không thể lưu lên kho đám mây');
+      }
+      return true;
+    }
+
+    // Load Lesson Data: supports both Local Python server and Vercel/Cloud edge
+    async function fetchLessonData(lessonId) {
+      // 1. Try local server
+      try {
+        const res = await fetch(`/api/get-lesson?id=${encodeURIComponent(lessonId)}`);
+        if (res.ok) return await res.json();
+      } catch (e) {}
+
+      // 2. Try cloud edge storage
+      const cloudRes = await fetch(`${CLOUD_BUCKET}/${lessonId}`);
+      if (cloudRes.ok) {
+        return await cloudRes.json();
+      }
+
+      throw new Error('Không tìm thấy bài học này trên hệ thống.');
+    }
+
+    // Generate Real QR Code
+    async function handleGenerateQR() {
+      if (!appState.pdfDoc || appState.renderedPagesData.length === 0) {
+        alert('Vui lòng chọn tệp PDF và đợi hiển thị trang trước khi sinh mã.');
+        return;
+      }
+
+      const btn = document.getElementById('btn-generate-qr');
+      btn.disabled = true;
+      btn.textContent = 'Đang lưu bài học và sinh mã QR...';
+
+      const subject = document.getElementById('subject-input').value.trim() || 'Môn học';
+      const lesson = document.getElementById('lesson-input').value.trim() || 'Bài học';
+      
+      const lessonId = 'ls_' + Date.now();
+      appState.currentLessonId = lessonId;
+
+      const payload = {
+        id: lessonId,
+        subject: subject,
+        lesson: lesson,
+        pagesText: `Trang ${appState.startPage} – ${appState.endPage}`,
+        fileName: appState.fileName,
+        pages: appState.renderedPagesData
+      };
+
+      try {
+        await saveLessonData(lessonId, payload);
+
+        // Generate public student URL
+        const studentUrl = `${appState.baseUrl.replace(/\/+$/, '')}/?lesson=${lessonId}`;
+
+        // Update TV presentation labels
+        document.getElementById('tv-subject-label').textContent = subject.toUpperCase();
+        document.getElementById('tv-lesson-title').textContent = lesson;
+        document.getElementById('tv-pages-label').textContent = 
+          `TRÍCH XUẤT: TRANG ${appState.startPage} – ${appState.endPage} (TỆP: ${appState.fileName})`;
+
+        // Mount QR code
+        const qrMount = document.getElementById('tv-qrcode-mount');
+        qrMount.innerHTML = '';
+
+        new QRCode(qrMount, {
+          text: studentUrl,
+          width: 260,
+          height: 260,
+          colorDark: "#111110",
+          colorLight: "#FFFFFF",
+          correctLevel: QRCode.CorrectLevel.M
+        });
+
+        const linkEl = document.getElementById('tv-qr-link-url');
+        linkEl.href = studentUrl;
+        linkEl.textContent = studentUrl;
+
+        btn.disabled = false;
+        btn.textContent = 'Sinh mã QR cho bài học';
+
+        switchView('tv');
+
+      } catch (err) {
+        console.error(err);
+        alert('Lỗi lưu bài học: ' + err.message);
+        btn.disabled = false;
+        btn.textContent = 'Sinh mã QR cho bài học';
+      }
+    }
+
+    // Render Student View with loaded pages
+    function displayStudentPages(subject, lesson, pagesText, pages) {
+      document.getElementById('reader-title').textContent = `${subject} — ${lesson}`;
+      document.getElementById('reader-subtitle').textContent = pagesText;
+
+      const stream = document.getElementById('reader-stream-container');
+      stream.innerHTML = '';
+
+      if (!pages || pages.length === 0) {
+        stream.innerHTML = '<div style="padding:40px; text-align:center; color:var(--text-muted); font-size:13px;">Không có trang nào trong bài học này.</div>';
+        return;
+      }
+
+      pages.forEach(item => {
+        const wrap = document.createElement('div');
+        wrap.className = 'canvas-page-wrapper';
+
+        const title = document.createElement('div');
+        title.className = 'canvas-page-title';
+        title.textContent = `TRANG ${item.pageNum} (TRÍCH XUẤT CHO TIẾT HỌC)`;
+
+        const img = document.createElement('img');
+        img.src = item.dataUrl;
+        img.alt = `Trang ${item.pageNum}`;
+
+        wrap.appendChild(title);
+        wrap.appendChild(img);
+        stream.appendChild(wrap);
+      });
+    }
+
+    // On Load: Check if opened as Student Reader (e.g., from Phone scanning QR code)
+    window.addEventListener('DOMContentLoaded', async () => {
+      await initEnvironment();
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const lessonId = urlParams.get('lesson');
+
+      if (lessonId) {
+        // Hide teacher header so student has a pure clean reading interface
+        document.getElementById('main-header').style.display = 'none';
+        switchView('student');
+
+        try {
+          const lessonData = await fetchLessonData(lessonId);
+
+          displayStudentPages(
+            lessonData.subject || 'Môn học',
+            lessonData.lesson || 'Bài học',
+            lessonData.pagesText || '',
+            lessonData.pages || []
+          );
+        } catch (err) {
+          document.getElementById('reader-stream-container').innerHTML = 
+            `<div style="padding:40px; text-align:center; color:#DC2626; font-size:13px;">
+              Lỗi tải bài học: ${err.message}<br><br>
+              <small style="color:var(--text-muted)">Vui lòng kiểm tra lại kết nối mạng hoặc thử lại.</small>
+            </div>`;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
