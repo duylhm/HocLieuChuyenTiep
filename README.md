@@ -43,7 +43,7 @@ Dự án vận dụng đúng quy định tại **Khoản 1 Điều 25 Luật S�
 
 ## 5. Hướng dẫn chạy thử nghiệm
 
-### Chạy cục bộ trên máy tính:
+### 1. Chạy cục bộ trên máy tính:
 Yêu cầu máy đã cài sẵn Python 3:
 
 ```bash
@@ -55,5 +55,5 @@ python server.py
 
 # 3. Mở trình duyệt truy cập: http://localhost:8080
 ```
-### Truy cập vào web hoclieuchuyentiep.vercel.app để sử dụng
+### 2. Truy cập vào web hoclieuchuyentiep.vercel.app để sử dụng
 
