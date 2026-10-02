@@ -56,5 +56,3 @@ python server.py
 # 3. Mở trình duyệt truy cập: http://localhost:8080
 ```
 
-### Triển khai lên Vercel:
-Dự án đã có sẵn cấu hình `vercel.json`, bạn chỉ cần đẩy mã nguồn lên GitHub (repo `HocLieuChuyenTiep`) và kết nối với Vercel để nhận đường dẫn trực tuyến.
