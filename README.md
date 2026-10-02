@@ -1,156 +1,60 @@
-# 📚 SachDung — Giải pháp Tiếp cận Sách Giáo Khoa Hợp Pháp
+# Học Liệu Chuyển Tiếp (HocLieuChuyenTiep)
 
-> **Giải pháp sáng tạo, hợp pháp và có khả năng áp dụng thực tế** nhằm hỗ trợ học sinh duy trì việc học trong thời gian chưa được cung ứng đầy đủ sách giáo khoa.
-
-🌐 **Demo:** [sachdung.github.io](https://sachdung.github.io) *(cập nhật sau khi deploy)*
+Giải pháp phân phối học liệu vi mô theo bài học qua mã QR nhằm hỗ trợ học sinh duy trì việc học trong giai đoạn chờ cung ứng sách giáo khoa chính thức.
 
 ---
 
-## 🔍 Bối cảnh & Vấn đề
+## 1. Bối cảnh & Bài toán đặt ra
 
-Trong quá trình triển khai thống nhất hệ thống sách giáo khoa, nguồn cung chưa đáp ứng kịp nhu cầu tại nhiều địa phương. Học sinh bị gián đoạn học tập, phụ huynh lúng túng — và giải pháp "photocopy sách" tuy nhanh nhưng vi phạm Luật Sở hữu trí tuệ.
+Trong những tuần đầu năm học, việc điều chỉnh và phân phối sách giáo khoa có thể gặp độ trễ cục bộ tại một số địa phương, khiến học sinh chưa có đủ tài liệu học tập. Phản ứng tự phát phổ biến là photocopy nguyên cuốn sách vừa gây tốn kém chi phí, vừa tiềm ẩn nguy cơ vi phạm quyền tác giả theo Luật Sở hữu trí tuệ.
 
-**SachDung** đề xuất hệ thống ba tầng giải pháp — phủ toàn bộ từ thành thị đến vùng không có điện, không có mạng.
-
----
-
-## 💡 Giải pháp: Hệ thống Ba Tầng
-
-### 🟢 Tầng 1 — Giải pháp Online
-*Dành cho vùng có điện + Internet ổn định (thành thị)*
-
-| Yếu tố | Chi tiết |
-|---|---|
-| Chi phí | **0đ / học sinh** |
-| Triển khai | **24 giờ** |
-| Cơ sở pháp lý | Bản quyền NXB GDVN, CC BY-NC-SA |
-
-**Cách hoạt động:**
-- Nhà trường đăng ký **mã truy cập tập thể** miễn phí với NXB Giáo dục VN
-- Học sinh truy cập sách điện tử chính thức tại `hanhtrangso.nxbgd.vn`
-- Bổ sung: VioEdu, Khan Academy tiếng Việt, kênh YouTube Bộ GD&ĐT
-- Chia sẻ qua Zalo/nhóm lớp — không cần hạ tầng bổ sung
+**Học liệu chuyển tiếp** được thiết kế như một công cụ đệm ngắn hạn: thay vì nhân bản cả cuốn sách, giáo viên chỉ trích xuất đúng số trang cần thiết cho từng buổi học cụ thể và chia sẻ nhanh qua mã QR.
 
 ---
 
-### 🟡 Tầng 2 — Thư viện bỏ túi (Offline)
-*Dành cho vùng có điện, mạng yếu hoặc không có*
+## 2. Quy trình vận hành
 
-| Yếu tố | Chi tiết |
-|---|---|
-| Chi phí | **~40.000đ/USB** hoặc 800.000đ/trường (Raspberry Pi) |
-| Triển khai | **3–5 ngày** |
-| Cơ sở pháp lý | Giấy phép Creative Commons |
-
-**Hai phương án:**
-
-**A. USB Thư viện bỏ túi**
-- USB 8GB (~40.000đ) chứa đủ tài liệu cả năm học
-- Nội dung: CK-12, Wikipedia for Schools, PhET Simulations — tất cả CC
-- Không cần internet sau khi tải; dùng được trên điện thoại/laptop cũ
-
-**B. Mini Server Kolibri**
-- Raspberry Pi (~800.000đ/trường) cài phần mềm Kolibri (mã nguồn mở)
-- Tạo WiFi nội bộ bán kính 50m — học sinh kết nối bằng điện thoại cũ
-- Không cần internet; chứa toàn bộ nội dung Creative Commons
+1. **Trích xuất vi mô:** Giáo viên tải tệp tài liệu PDF lên trình duyệt và chọn đúng khoảng trang cho tiết học ngày hôm đó (khoảng 2 – 4 trang).
+2. **Sinh mã QR trình chiếu:** Hệ thống tự động lưu các trang đã chọn và sinh mã QR độ nét cao để giáo viên chiếu lên màn hình TV hoặc máy chiếu của lớp.
+3. **Tiếp cận bình đẳng:**
+   - **Học sinh có thiết bị:** Bật camera quét mã QR để mở trực tiếp nội dung bài học trên trình duyệt di động mà không cần đăng ký tài khoản hay cài đặt phần mềm.
+   - **Học sinh không có thiết bị:** Nhận bản in A4 của các trang trích xuất (hệ thống tích hợp sẵn nút in chuẩn A4) hoặc dùng chung sách tại tủ sách lớp học.
+4. **Kết thúc chuyển tiếp:** Khi sách giáo khoa chính thức được phát về tay học sinh, lớp học quay lại sử dụng sách giấy bình thường.
 
 ---
 
-### 🔴 Tầng 3 — Phi công nghệ
-*Dành cho vùng không có điện, không có thiết bị số*
+## 3. Cơ sở pháp lý
 
-| Yếu tố | Chi tiết |
-|---|---|
-| Chi phí | **0đ** |
-| Triển khai | **Ngay lập tức** |
-| Cơ sở pháp lý | Điều 25 Luật SHTT VN + Quyền giảng dạy |
-
-**Ba phương pháp:**
-
-1. **Luân chuyển sách có kiểm soát**
-   - 1 bộ sách gốc → lịch mượn theo ca trong lớp
-   - Giáo viên soạn "Phiếu học tập bộ xương" — tóm tắt kiến thức trọng tâm mỗi bài
-   - Học sinh không cần có sách liên tục
-
-2. **Sơ đồ tư duy — Diễn giải lại kiến thức**
-   - GV vẽ sơ đồ tư duy bài học lên bảng
-   - HS chép sơ đồ (không sao chép nguyên văn) → tạo tài liệu cá nhân mới
-   - Là sản phẩm sáng tạo mới — không vi phạm bản quyền
-
-3. **Học nhóm tổng hợp**
-   - Nhóm 4–6 học sinh dùng chung 1 cuốn sách
-   - Mỗi em tóm tắt 1 chương bằng lời của mình → tập tài liệu cộng đồng
-   - GV kiểm duyệt và nhân rộng trong lớp
+Dự án vận dụng đúng quy định tại **Khoản 1 Điều 25 Luật Sở hữu trí tuệ Việt Nam (sửa đổi, bổ sung 2022)** về các trường hợp ngoại lệ không xâm phạm quyền tác giả:
+* Chỉ trích dẫn một phần nhỏ tác phẩm (thường dưới 3% dung lượng sách) phục vụ trực tiếp cho mục đích giảng dạy trong lớp học.
+* Hoàn toàn phi thương mại, không thu phí học sinh và phụ huynh.
+* Không làm phương hại đến việc khai thác bình thường hay quyền lợi kinh tế của Nhà xuất bản.
 
 ---
 
-## ⚖️ Cơ sở Pháp lý
+## 4. Công nghệ sử dụng
 
-| Hoạt động | Cơ sở pháp lý |
-|---|---|
-| Truy cập sách điện tử NXB | NXB GDVN cung cấp bản quyền truy cập miễn phí |
-| Kolibri + Khan Academy + CK-12 | Giấy phép Creative Commons CC BY-NC-SA |
-| Tóm tắt bài giảng bởi GV | Quyền sử dụng trong giảng dạy (Luật GD, Luật SHTT) |
-| Sao chép 1 bản cá nhân | **Điều 25 Luật SHTT VN 2005 (sửa đổi 2022)** |
-| Sơ đồ tư duy | Tác phẩm phái sinh — sản phẩm sáng tạo mới |
+* **Giao diện:** HTML5, CSS3 theo phong cách tối giản (Minimalism), thiết kế tối ưu cho màn hình TV và điện thoại.
+* **Kết xuất PDF:** `PDF.js` (Mozilla) xử lý trực tiếp tệp PDF trên trình duyệt.
+* **Mã QR:** `QRCode.js` sinh mã ma trận động theo từng buổi học.
+* **Triển khai:** Tương thích với nền tảng máy chủ cục bộ hoặc lưu trữ đám mây tĩnh trên Vercel / GitHub Pages.
 
 ---
 
-## 📊 So sánh với phương án Photocopy không phép
+## 5. Hướng dẫn chạy thử nghiệm
 
-| Tiêu chí | SachDung | Photocopy không phép |
-|---|---|---|
-| Tuân thủ bản quyền | ✅ Hoàn toàn hợp pháp | ❌ Vi phạm Luật SHTT |
-| Chi phí học sinh | ✅ 0đ (Tầng 1 & 3) | Phí in ấn mỗi học kỳ |
-| Vùng không điện/mạng | ✅ Tầng 3 phủ sóng | ❌ Cần máy in, điện |
-| Tốc độ triển khai | ✅ 24–48 giờ | Vài ngày |
-| Rủi ro pháp lý | ✅ Không có | ❌ Có thể bị xử phạt |
+### Chạy cục bộ trên máy tính:
+Yêu cầu máy đã cài sẵn Python 3:
 
----
+```bash
+# 1. Di chuyển vào thư mục dự án
+cd sachdung
 
-## 🚀 Lộ trình Triển khai
+# 2. Khởi chạy máy chủ cục bộ
+python server.py
 
-```
-Tuần 1:   Kích hoạt Tầng 1 + Tầng 3 trong 24–48 giờ
-           → Đăng ký mã truy cập sách số với NXB
-           → GV soạn Phiếu học tập bộ xương
-
-Tuần 2:   Triển khai Tầng 2 cho vùng nông thôn
-           → Sở GD cấp USB / cài Kolibri cho trường
-
-Tuần 3–4: Đánh giá, thu thập phản hồi, điều chỉnh
-
-Kết thúc: Khi sách chính thức về đầy đủ → dừng hệ thống tạm thời
-           Lưu lại kinh nghiệm triển khai cho tương lai
+# 3. Mở trình duyệt truy cập: http://localhost:8080
 ```
 
----
-
-## 🌟 Điểm nổi bật
-
-- **Không ai bị bỏ lại**: 3 tầng phủ 100% học sinh — từ thành thị đến vùng không điện
-- **Zero vi phạm bản quyền**: Mỗi phương án có cơ sở pháp lý cụ thể
-- **Chi phí gần bằng 0**: Tận dụng tài nguyên sẵn có và mã nguồn mở
-- **Triển khai trong 24–48 giờ**: Không cần đầu tư hạ tầng lớn
-- **Giá trị lâu dài**: Thư viện USB và học nhóm tiếp tục hữu ích sau khủng hoảng
-
----
-
-## 📁 Cấu trúc Repository
-
-```
-sachdung/
-├── index.html        # Landing page giải pháp
-└── README.md         # Tài liệu này
-```
-
----
-
-## 📬 Liên hệ
-
-- **Email:** [Email của bạn]
-- **GitHub:** [GitHub của bạn]
-
----
-
-*SachDung — Giải pháp chuyển tiếp hợp pháp. Tuân thủ Luật SHTT VN 2005 (sửa đổi 2022) · Creative Commons.*
+### Triển khai lên Vercel:
+Dự án đã có sẵn cấu hình `vercel.json`, bạn chỉ cần đẩy mã nguồn lên GitHub (repo `HocLieuChuyenTiep`) và kết nối với Vercel để nhận đường dẫn trực tuyến.
