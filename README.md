@@ -32,16 +32,7 @@ Dự án vận dụng đúng quy định tại **Khoản 1 Điều 25 Luật S�
 
 ---
 
-## 4. Công nghệ sử dụng
-
-* **Giao diện:** HTML5, CSS3, thiết kế tối ưu cho màn hình TV và điện thoại.
-* **Kết xuất PDF:** `PDF.js` (Mozilla) xử lý trực tiếp tệp PDF trên trình duyệt.
-* **Mã QR:** `QRCode.js` sinh mã ma trận động theo từng buổi học.
-* **Triển khai:** Tương thích với nền tảng máy chủ cục bộ hoặc lưu trữ đám mây tĩnh trên Vercel / GitHub Pages.
-
----
-
-## 5. Hướng dẫn chạy thử nghiệm
+## 4. Hướng dẫn chạy thử nghiệm
 
 ### a) Chạy cục bộ trên máy tính:
 Yêu cầu máy đã cài sẵn Python 3:
@@ -59,17 +50,16 @@ python server.py
 
 ## ⚠️ Hạn chế Kỹ thuật & Lưu ý quan trọng (Disclaimer)
 
-Sản phẩm hiện đang ở giai đoạn **Demo / Prototype** nhằm mục đích kiểm chứng giải pháp chuyển tiếp học liệu. Dưới đây là các hạn chế kỹ thuật và lưu ý cần cân nhắc trước khi vận hành thực tế:
+Sản phẩm hiện đang ở giai đoạn **Prototype** nhằm mục đích kiểm chứng giải pháp chuyển tiếp học liệu. Dưới đây là các hạn chế kỹ thuật và lưu ý cần cân nhắc trước khi vận hành thực tế:
 
 ### a) Hạn chế về mặt Kỹ thuật & Hiệu năng
-* **Giới hạn dung lượng file PDF:** Việc xử lý và trích xuất trang từ các file PDF sách giáo khoa dung lượng lớn (trên 30MB - 50MB) có thể bị chậm, giật/lag hoặc gây tràn bộ nhớ thiết bị (nếu xử lý hoàn toàn ở phía Client) hoặc chạm ngưỡng timeout/memory limit của Vercel Serverless Functions.
+* **Giới hạn dung lượng file PDF:** Việc xử lý và trích xuất trang từ các file PDF sách giáo khoa dung lượng lớn (trên 100MB) có thể bị chậm, giật/lag hoặc chạm ngưỡng timeout/memory limit của Vercel Serverless Functions.
 * **Lưu trữ dữ liệu có thời hạn:** Các liên kết tài liệu/mã QR tạo ra từ bản Demo hiện chỉ đóng vai trò truy xuất tạm thời, chưa được tích hợp hệ thống lưu trữ đám mây (Cloud Storage) và cơ sở dữ liệu chuyên dụng để đảm bảo duy trì liên kết lâu dài.
 * **Độ tương thích thiết bị:** Trải nghiệm xem file và quét mã QR có thể gặp một số lỗi hiển thị nhỏ khi mở bằng các trình duyệt tích hợp (In-app Browser) như Zalo, Facebook, Messenger trên các thiết bị di động đời cũ.
 
 ### b) Trách nhiệm Pháp lý & Bản quyền
-* **Phạm vi công cụ:** Ứng dụng chỉ đóng vai trò là công cụ kỹ thuật hỗ trợ giáo viên trích xuất nhanh tài liệu. Người sử dụng công cụ chịu trách nhiệm tự bảo đảm nội dung file PDF tải lên tuân thủ đúng giới hạn cho phép của **Luật Sở hữu trí tuệ** (ví dụ: chỉ trích xuất trọn vẹn 2–4 trang/tiết học phục vụ giảng dạy nội bộ phi thương mại theo Khoản 1 Điều 25).
+* **Phạm vi công cụ:** Ứng dụng chỉ đóng vai trò là công cụ kỹ thuật hỗ trợ giáo viên trích xuất nhanh tài liệu. Người sử dụng công cụ chịu trách nhiệm tự bảo đảm nội dung file PDF tải lên tuân thủ đúng giới hạn cho phép của **Luật Sở hữu trí tuệ** (ví dụ: chỉ trích xuất trọn vẹn 4-6 trang/tiết học phục vụ giảng dạy nội bộ phi thương mại theo Khoản 1 Điều 25).
 * **Mục đích sử dụng:** Mọi mã QR và học liệu sinh ra từ hệ thống chỉ phục vụ mục đích học tập chuyển tiếp trong thời gian chờ sách giáo khoa chính thức, không lưu hành vì mục đích thương mại hay chia sẻ công khai quy mô lớn.
 
 ### c) Trạng thái Sản phẩm
-* **Chưa phải bản thương mại (Non-Production Ready):** Website [hoclieuchuyentiep.vercel.app](https://hoclieuchuyentiep.vercel.app) chưa cam kết về độ sẵn sàng (SLA uptime), khả năng chịu tải đồng thời lớn (high concurrency) cũng như các tiêu chuẩn bảo mật chuyên sâu.
-* **Thay đổi không báo trước:** Cấu trúc mã nguồn, luồng xử lý và dữ liệu thử nghiệm trên trang có thể được nâng cấp, chỉnh sửa hoặc làm mới (reset) trong quá trình phát triển dự án.
+* **Chưa phải bản chính thức:** Website [hoclieuchuyentiep.vercel.app](https://hoclieuchuyentiep.vercel.app) chưa cam kết về độ sẵn sàng, khả năng chịu tải đồng thời lớn cũng như các tiêu chuẩn bảo mật chuyên sâu.
