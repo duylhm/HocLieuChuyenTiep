@@ -14,7 +14,7 @@ Trong những tuần đầu năm học, việc điều chỉnh và phân phối 
 
 ## 2. Quy trình vận hành
 
-1. **Trích xuất học liệu:** Giáo viên tải tệp tài liệu PDF lên trình duyệt và chọn đúng khoảng trang cho tiết học ngày hôm đó (khoảng 2 – 4 trang).
+1. **Trích xuất học liệu:** Giáo viên tải tệp tài liệu PDF lên trình duyệt và chọn đúng khoảng trang cho tiết học ngày hôm đó (khoảng 4 - 6 trang).
 2. **Sinh mã QR trình chiếu:** Hệ thống tự động lưu các trang đã chọn và sinh mã QR độ nét cao để giáo viên chiếu lên màn hình TV hoặc máy chiếu của lớp.
 3. **Tiếp cận bình đẳng:**
    - **Học sinh có thiết bị:** Bật camera quét mã QR để mở trực tiếp nội dung bài học trên trình duyệt di động mà không cần đăng ký tài khoản hay cài đặt phần mềm.
@@ -58,7 +58,7 @@ Sản phẩm hiện đang ở giai đoạn **Prototype** nhằm mục đích ki�
 * **Độ tương thích thiết bị:** Trải nghiệm xem file và quét mã QR có thể gặp một số lỗi hiển thị nhỏ khi mở bằng các trình duyệt tích hợp (In-app Browser) như Zalo, Facebook, Messenger trên các thiết bị di động đời cũ.
 
 ### b) Trách nhiệm Pháp lý & Bản quyền
-* **Phạm vi công cụ:** Ứng dụng chỉ đóng vai trò là công cụ kỹ thuật hỗ trợ giáo viên trích xuất nhanh tài liệu. Người sử dụng công cụ chịu trách nhiệm tự bảo đảm nội dung file PDF tải lên tuân thủ đúng giới hạn cho phép của **Luật Sở hữu trí tuệ** (ví dụ: chỉ trích xuất trọn vẹn 4-6 trang/tiết học phục vụ giảng dạy nội bộ phi thương mại theo Khoản 1 Điều 25).
+* **Phạm vi công cụ:** Ứng dụng chỉ đóng vai trò là công cụ kỹ thuật hỗ trợ giáo viên trích xuất nhanh tài liệu. Người sử dụng công cụ chịu trách nhiệm tự bảo đảm nội dung file PDF tải lên tuân thủ đúng giới hạn cho phép của **Luật Sở hữu trí tuệ** (ví dụ: chỉ trích xuất trọn vẹn 4 - 6 trang/tiết học phục vụ giảng dạy nội bộ phi thương mại theo Khoản 1 Điều 25).
 * **Mục đích sử dụng:** Mọi mã QR và học liệu sinh ra từ hệ thống chỉ phục vụ mục đích học tập chuyển tiếp trong thời gian chờ sách giáo khoa chính thức, không lưu hành vì mục đích thương mại hay chia sẻ công khai quy mô lớn.
 
 ### c) Trạng thái Sản phẩm
